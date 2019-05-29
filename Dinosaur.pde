@@ -1,8 +1,21 @@
-class Dinosaur {
+class Dinosaur extends Enemy{
 	// Requirement #4: Complete Dinosaur Class
 
 	final float TRIGGERED_SPEED_MULTIPLIER = 5;
-
+  float speed = 2f/2;
+  
+  void display(){
+    image(dinosaur, x, y);
+  }
+  void update(){
+    x += speed;
+    if(x >= width) x = -w;
+  }
+  
+  Dinosaur(float x, float y){
+      super(x, y);
+    }
+  
 	// HINT: Player Detection in update()
 	/*
 	float currentSpeed = speed
