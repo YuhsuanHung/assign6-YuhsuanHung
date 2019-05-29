@@ -5,11 +5,23 @@ class Dinosaur extends Enemy{
   float speed = 2f/2;
   
   void display(){
-    image(dinosaur, x, y);
+    int direction = (speed > 0) ? RIGHT : LEFT;
+    pushMatrix();
+    translate(x, y);
+    if (direction == RIGHT) {
+      scale(1, 1);
+      image(dinosaur, 0, 0, w, h);
+    } else {
+      scale(-1, 1);
+      image(dinosaur, -w, 0, w, h);
+    }
+    popMatrix();
   }
   void update(){
     x += speed;
-    if(x >= width) x = -w;
+    if (x<0 || x>width-w) { 
+    speed *= -1 ;
+    }
   }
   
   Dinosaur(float x, float y){
