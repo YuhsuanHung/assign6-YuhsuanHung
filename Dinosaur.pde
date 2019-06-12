@@ -19,10 +19,16 @@ class Dinosaur extends Enemy{
   }
   void update(){
     x += speed;
-    if (x<0 || x>width-w) { 
+    if (x<0 || x>width-w) { //if touch side ,go back
     speed *= -1 ;
     }
-  }
+    if(player.y == y && player.x > x && speed == 2f/2 ){
+    speed *= TRIGGERED_SPEED_MULTIPLIER;
+    }
+    if(player.y == y && player.x < x && speed == -(2f/2)){
+    speed *= TRIGGERED_SPEED_MULTIPLIER;
+    }
+}
   
   Dinosaur(float x, float y){
       super(x, y);
