@@ -23,9 +23,23 @@ class Robot extends Enemy{
     popMatrix();
   }
   void update(){
+    boolean checkY = false;
+    boolean checkX = false;
+    if( speed > 0 && x < player.x || speed < 0 && x > player.x ){
+      checkX = true;
+    }
+    if( player.y >= y - PLAYER_DETECT_RANGE_ROW * SOIL_SIZE && player.y <= y + PLAYER_DETECT_RANGE_ROW * SOIL_SIZE){
+      checkY = true ;
+    }else{
+      checkY = false;
+    } 
+    if(checkX && checkY){
+      x +=0;
+    }else {
     x += speed;
-    if (x<0 || x>width-w) { 
+    if (x<0 || x>width-w) { //side
     speed *= -1 ;
+      }
     }
   }
   
